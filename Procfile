@@ -1,1 +1,1 @@
-web: gunicorn lixeiraIoT.wsgi
+web: gunicorn LixeiraIoT.wsgi
