@@ -5,10 +5,11 @@ on:
     branches: [ "master" ]
 env:
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
-  DB1_NAME: ${{ secrets.DB_NAME }}
-  DB1_USER: ${{ secrets.DB_USER }}
-  DB1_PASSWORD: ${{ secrets.DB_PASSWORD }}
-  DB1_HOST: ${{ secrets.DB_HOST }}
+  DB_NAME: ${{ secrets.DB_NAME }}
+  DB_USER: ${{ secrets.DB_USER }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  DB_HOST: ${{ secrets.DB_HOST }}
+  DB_PORT: ${{ secrets.DB_PORT }}
   
 permissions:
   contents: read
