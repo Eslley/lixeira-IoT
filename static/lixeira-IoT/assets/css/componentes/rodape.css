@@ -1,0 +1,39 @@
+.rodape {
+    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.rodape__logo {
+    max-width: 11.125rem;
+
+    margin-bottom: 1.25rem;
+}
+
+.rodape__social {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.rodape__social-midia {
+    display: inline-block;
+
+    width: 1.625rem;
+    height: 1.625rem;
+
+    margin-right: 1.625rem;
+}
+
+.rodape__unidade {
+    margin-bottom: 2rem;
+}
+
+.rodape__unidade-titulo {
+    color: var(--preto);
+    font-size: var(--tamanho-destaque);
+    font-weight: var(--peso-destaque);
+
+    display: block;
+
+    margin-bottom: .5rem;
+}
