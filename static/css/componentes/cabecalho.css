@@ -15,7 +15,8 @@
     width: 11.125rem;
 }
 
-.cabecalho__entrar {
-    color: var(--preto);
-    margin-bottom: 0.8em;
+.cabecalho__dashboard {
+    color: var(--cinza);
+    font-size: 1.15rem;
+    margin-bottom: 0.7em;
 }

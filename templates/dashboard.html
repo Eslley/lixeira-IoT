@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Lixeira IoT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componentes/cabecalho.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chamada.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componentes/input.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componentes/botoes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componentes/rodape.css' %}">
+</head>
+<body>
+    <header class="container cabecalho">
+        <img src="assets/img/logo.svg" alt="Logo da Lixeira IoT" class="cabecalho__logo">
+        <a href="tela_inicial.html" aria-label="Dashboard">
+            <p class="cabecalho__entrar">Home</p>
+        </a>
+    </header>
+    <main>
+        <section class="container">
+            <h2 class="titulo">
+                <span class="titulo--destaque">Dashboard</span>
+            </h2>
+            <h2 class="titulo">Informações</h2>
+            <p>Estado: {{ estado }}</p>
+            <p>Nível: {{ nivel }}</p>
+            <h2 class="titulo">Pessoas cadastradas</h2>
+            <textarea cols="36" rows="5" name="lista-nomes" class="input" readonly style="resize: none"></textarea>
+            <form action="#" class="chamada__formulario">
+                <input type="text" class="input" placeholder="Insira um nome" aria-label="Insira um nome">
+                <button type="submit" class="botao">Adicionar</button>
+                <button type="submit" class="botao">Remover</button>
+            </form>
+            <button class="botao">Sortear</button>
+        </section>
+    </main>
+    <footer class="container rodape">
+        <img src="assets/img/logo.svg" alt="Logo da Lixeira IoT" class="rodape__logo">
+        <ul class="rodape__social">
+            <li><a href="#" class="rodape__social-midia" title="Facebook"><img src="assets/img/icones/facebook.svg" alt="Ícone do Facebook"></a></li>
+            <li><a href="#" class="rodape__social-midia" title="Twitter"><img src="assets/img/icones/twitter.svg" alt="Ícone do Twitter"></a></li>
+            <li><a href="#" class="rodape__social-midia" title="Instagram"><img src="assets/img/icones/instagram.svg" alt="Ícone do Instagram"></a></li>
+        </ul>
+        <address class="rodape__unidade texto">
+            <span class="rodape__unidade-titulo">Grupo 3</span>
+            Ciência da Computação<br>
+            UFPI - CCN<br>
+        </address>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,22 @@
+.input {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+
+    width: 100%;
+    padding-top: 1.75rem;
+    padding-right: 1.75rem;
+    padding-bottom: 1.75rem;
+    padding-left: 1.75rem;
+
+    box-sizing: border-box;
+
+    margin-bottom: 1rem;
+
+    border: none;
+
+    background-color: var(--branco);
+
+    box-shadow: 10px 10px 30px var(--preto-transparente);
+    border-radius: 17px;
+}

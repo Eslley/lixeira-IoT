@@ -2,7 +2,7 @@
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
 
-    background-image: url('../img/splash cabecalho.svg');
+    background-image: url('../../assets/img/splash cabecalho.svg');
     background-position: top -4rem right;
     background-repeat: no-repeat;
 
@@ -21,4 +21,9 @@
     max-height: 150px;
     max-width: 150px;
     object-fit: contain;
+}
+
+.chamada__formulario {
+    position: relative;
+    z-index: 2;
 }
