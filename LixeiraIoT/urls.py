@@ -19,6 +19,6 @@ from LixeiraIoT.views import *
 
 urlpatterns = [
     path('', index),
-    path('test/', include('lixeiraAPI.urls')),
+    path('api/', include('lixeiraAPI.urls')),
     path('admin/', admin.site.urls),
 ]
