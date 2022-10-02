@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +16,7 @@
 </head>
 <body>
     <header class="container cabecalho">
-        <img src="assets/img/logo.svg" alt="Logo da Lixeira IoT" class="cabecalho__logo">
+        <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="cabecalho__logo">
         <a href="tela_inicial.html" aria-label="Dashboard">
             <p class="cabecalho__entrar">Home</p>
         </a>
@@ -39,11 +40,11 @@
         </section>
     </main>
     <footer class="container rodape">
-        <img src="assets/img/logo.svg" alt="Logo da Lixeira IoT" class="rodape__logo">
+        <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="rodape__logo">
         <ul class="rodape__social">
-            <li><a href="#" class="rodape__social-midia" title="Facebook"><img src="assets/img/icones/facebook.svg" alt="Ícone do Facebook"></a></li>
-            <li><a href="#" class="rodape__social-midia" title="Twitter"><img src="assets/img/icones/twitter.svg" alt="Ícone do Twitter"></a></li>
-            <li><a href="#" class="rodape__social-midia" title="Instagram"><img src="assets/img/icones/instagram.svg" alt="Ícone do Instagram"></a></li>
+            <li><a href="#" class="rodape__social-midia" title="Facebook"><img src="{% static 'img/icones/facebook.svg' %}" alt="Ícone do Facebook"></a></li>
+            <li><a href="#" class="rodape__social-midia" title="Twitter"><img src="{% static 'img/icones/twitter.svg' %}" alt="Ícone do Twitter"></a></li>
+            <li><a href="#" class="rodape__social-midia" title="Instagram"><img src="{% static 'img/icones/instagram.svg' %}" alt="Ícone do Instagram"></a></li>
         </ul>
         <address class="rodape__unidade texto">
             <span class="rodape__unidade-titulo">Grupo 3</span>
