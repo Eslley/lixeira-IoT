@@ -88,7 +88,7 @@ if 'test' in sys.argv:
         'default': {
         'ENGINE': "django.db.backends.sqlite3",
         'TEST': {
-            'NAME': os.path.join(BASE_DIR, "test_db.sqlite3"),
+            'NAME': 'test_db.sqlite3'
         }
     }}
 else:
