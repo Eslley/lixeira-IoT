@@ -18,7 +18,7 @@
     <header class="container cabecalho">
         <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="cabecalho__logo">
         <a href="/" aria-label="Dashboard">
-            <p class="cabecalho__entrar">Home</p>
+            <p class="cabecalho__nav">Home</p>
         </a>
     </header>
     <main>
@@ -30,11 +30,10 @@
             <p>Estado: {{ estado }}</p>
             <p>Nível: {{ nivel }}</p>
             <h2 class="titulo">Pessoas cadastradas</h2>
-            <textarea cols="36" rows="5" name="lista-nomes" class="input" readonly style="resize: none"></textarea>
+            <ul id="listaDeNomes"></ul>
             <form action="#" class="chamada__formulario">
-                <input type="text" class="input" placeholder="Insira um nome" aria-label="Insira um nome">
-                <button type="submit" class="botao">Adicionar</button>
-                <button type="submit" class="botao">Remover</button>
+                <input type="text" class="input" id="nome" placeholder="Insira um nome" aria-label="Insira um nome">
+                <button type="submit" class="botao" id="btnAddNome">Adicionar</button>
             </form>
             <button class="botao">Sortear</button>
         </section>
@@ -52,5 +51,26 @@
             UFPI - CCN<br>
         </address>
     </footer>
+    <script>
+        var nomeFornecido = document.querySelector('#nome')
+        var btnClass = document.querySelector('#btnAddNome')
+        var listaDeNomes = document.querySelector('#listaDeNomes')
+        btnClass.addEventListener('click', () => {
+            var nomeAtual = nomeFornecido.value
+            if (nomeAtual.length != 0) {
+                var createAnHTMLList = `<li class="nomeNaLista">${nomeAtual}<button
+                onclick="removeNameFromTheList(this)" class="btnRemover">Remover</button>`
+                listaDeNomes.innerHTML += createAnHTMLList
+                nomeFornecido.value = ''
+                nomeFornecido.classList.remove('red')
+            } else
+            {
+                nomeFornecido.classList.add('red')
+            }
+        })
+        function removeNameFromTheList(e) {
+            e.parentElement.remove()
+        }
+    </script>
 </body>
 </html>
