@@ -15,62 +15,69 @@
     <link rel="stylesheet" href="{% static 'css/componentes/rodape.css' %}">
 </head>
 <body>
-    <header class="container cabecalho">
-        <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="cabecalho__logo">
-        <a href="/" aria-label="Dashboard">
-            <p class="cabecalho__nav">Home</p>
-        </a>
-    </header>
-    <main>
-        <section class="container">
-            <h2 class="titulo">
-                <span class="titulo--destaque">Dashboard</span>
-            </h2>
-            <h2 class="titulo">Informações</h2>
-            <p>Estado: {{ estado }}</p>
-            <p>Nível: {{ nivel }}</p>
-            <h2 class="titulo">Pessoas cadastradas</h2>
-            <ul id="listaDeNomes"></ul>
-            <form action="#" class="chamada__formulario">
-                <input type="text" class="input" id="nome" placeholder="Insira um nome" aria-label="Insira um nome">
-                <button type="submit" class="botao" id="btnAddNome">Adicionar</button>
-            </form>
-            <button class="botao">Sortear</button>
-        </section>
-    </main>
-    <footer class="container rodape">
-        <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="rodape__logo">
-        <ul class="rodape__social">
-            <li><a href="#" class="rodape__social-midia" title="Facebook"><img src="{% static 'img/icones/facebook.svg' %}" alt="Ícone do Facebook"></a></li>
-            <li><a href="#" class="rodape__social-midia" title="Twitter"><img src="{% static 'img/icones/twitter.svg' %}" alt="Ícone do Twitter"></a></li>
-            <li><a href="#" class="rodape__social-midia" title="Instagram"><img src="{% static 'img/icones/instagram.svg' %}" alt="Ícone do Instagram"></a></li>
-        </ul>
-        <address class="rodape__unidade texto">
-            <span class="rodape__unidade-titulo">Grupo 3</span>
-            Ciência da Computação<br>
-            UFPI - CCN<br>
-        </address>
-    </footer>
-    <script>
-        var nomeFornecido = document.querySelector('#nome')
-        var btnClass = document.querySelector('#btnAddNome')
-        var listaDeNomes = document.querySelector('#listaDeNomes')
-        btnClass.addEventListener('click', () => {
-            var nomeAtual = nomeFornecido.value
-            if (nomeAtual.length != 0) {
-                var createAnHTMLList = `<li class="nomeNaLista">${nomeAtual}<button
-                onclick="removeNameFromTheList(this)" class="btnRemover">Remover</button>`
-                listaDeNomes.innerHTML += createAnHTMLList
-                nomeFornecido.value = ''
-                nomeFornecido.classList.remove('red')
-            } else
-            {
-                nomeFornecido.classList.add('red')
+    <div id="content">
+        <header class="container cabecalho">
+            <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="cabecalho__logo">
+            <a href="/" aria-label="Dashboard">
+                <p class="cabecalho__nav">Home</p>
+            </a>
+        </header>
+        <main>
+            <section class="container">
+                <h2 class="titulo">
+                    <span class="titulo--destaque">Dashboard</span>
+                </h2>
+                <h2 class="titulo">Informações</h2>
+                <p>Estado: {{ estado }}</p>
+                <p>Nível: {{ nivel }}</p>
+                <h2 class="titulo">Pessoas cadastradas</h2>
+                <ul id="listaDeNomes"></ul>
+                <form action="#" class="chamada__formulario">
+                    <input type="text" class="input" id="nome" placeholder="Insira um nome" aria-label="Insira um nome">
+                    <button type="submit" class="botao" id="btnAddNome">Adicionar</button>
+                </form>
+                <button @click="listar()" class="botao">Sortear</button>
+            </section>
+        </main>
+        <footer class="container rodape">
+            <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="rodape__logo">
+            <ul class="rodape__social">
+                <li><a href="#" class="rodape__social-midia" title="Facebook"><img src="{% static 'img/icones/facebook.svg' %}" alt="Ícone do Facebook"></a></li>
+                <li><a href="#" class="rodape__social-midia" title="Twitter"><img src="{% static 'img/icones/twitter.svg' %}" alt="Ícone do Twitter"></a></li>
+                <li><a href="#" class="rodape__social-midia" title="Instagram"><img src="{% static 'img/icones/instagram.svg' %}" alt="Ícone do Instagram"></a></li>
+            </ul>
+            <address class="rodape__unidade texto">
+                <span class="rodape__unidade-titulo">Grupo 3</span>
+                Ciência da Computação<br>
+                UFPI - CCN<br>
+            </address>
+        </footer>
+        <script>
+            var nomeFornecido = document.querySelector('#nome')
+            var btnClass = document.querySelector('#btnAddNome')
+            var listaDeNomes = document.querySelector('#listaDeNomes')
+            btnClass.addEventListener('click', () => {
+                var nomeAtual = nomeFornecido.value
+                if (nomeAtual.length != 0) {
+                    var createAnHTMLList = `<li class="nomeNaLista">${nomeAtual}<button
+                    onclick="removeNameFromTheList(this)" class="btnRemover">Remover</button>`
+                    listaDeNomes.innerHTML += createAnHTMLList
+                    nomeFornecido.value = ''
+                    nomeFornecido.classList.remove('red')
+                } else
+                {
+                    nomeFornecido.classList.add('red')
+                }
+            })
+            function removeNameFromTheList(e) {
+                e.parentElement.remove()
             }
-        })
-        function removeNameFromTheList(e) {
-            e.parentElement.remove()
-        }
-    </script>
+        </script>
+
+    </div>
 </body>
+
+    <script src="{% static 'plugins/vue/dist/vue.min.js' %}"></script>
+    <script src="{% static 'js/dashboard.js' %}" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </html>

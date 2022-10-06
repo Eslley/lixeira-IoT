@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://lixeira-iot.herokuapp.com/']
+ALLOWED_HOSTS = ['*']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'LixeiraIoT.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'NAME': config('DBT_NAME'),
+        'USER': config('DBT_USER'),
+        'PASSWORD': config('DBT_PASSWORD'),
+        'HOST': config('DBT_HOST'),
+        'PORT': config('DBT_PORT'),
     }
 }
 
