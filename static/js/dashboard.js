@@ -47,7 +47,7 @@ var v = new Vue({
             if (this.pessoas.length <= 0) {
                 this.showAlert("warning", "Aviso", "Sem pessoas para sortear!")
             } else {
-                const index = Math.floor(Math.random() * numeros. length)
+                const index = Math.floor(Math.random() * this.pessoas.length)
                 console.log("Sorteado foi " + this.pessoas[index])
             }
         },
