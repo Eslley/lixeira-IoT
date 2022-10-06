@@ -26,6 +26,8 @@ var v = new Vue({
             http.post('pessoas/create/', { 'nome': this.nome }).then(response => {
                 if (response.status == 201) {
                     alert("Adicionado com sucesso!")
+
+                    this.listar()
                 } else {
                     alert(response.data.message)
                 }
