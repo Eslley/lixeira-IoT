@@ -32,6 +32,7 @@ var v = new Vue({
                     alert(response.data.message)
                 }
             }).catch(err => {
+                this.showAlert("error", "Erro", "A pessoa não foi cadastrada")
                 console.log(err)
             })
         },
@@ -39,7 +40,6 @@ var v = new Vue({
         listar() {
             http.get('pessoas/').then(response => {
                 this.pessoas = response.data
-                console.log(response)
             })
         },
 
