@@ -19,7 +19,7 @@ var v = new Vue({
 
         listar() {
             http.get('pessoas/').then(response => {
-                pessoas = response.data
+                this.pessoas = response.data
                 console.log(response)
             })
             
