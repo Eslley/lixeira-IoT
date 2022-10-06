@@ -25,11 +25,10 @@ var v = new Vue({
         salvar() {
             http.post('pessoas/create/', { 'nome': this.nome }).then(response => {
                 if (response.status == 201) {
-                    alert("Adicionado com sucesso!")
-
+                    this.showAlert("success", "Aviso", "A pessoa foi adicionada com sucesso!")
                     this.listar()
                 } else {
-                    alert(response.data.message)
+                    this.showAlert("error", "Erro", response.data.message)
                 }
             }).catch(err => {
                 this.showAlert("error", "Erro", "A pessoa não foi cadastrada")
