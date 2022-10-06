@@ -31,7 +31,11 @@
                 <p>Estado: {{ estado }}</p>
                 <p>Nível: {{ nivel }}</p>
                 <h2 class="titulo">Pessoas cadastradas</h2>
-                <ul id="listaDeNomes"></ul>
+                <ul id="listaDeNomes">
+                    <li v-for="p in pessoas">
+                        {{ p.nome }}
+                    </li>
+                </ul>
                 <form action="#" class="chamada__formulario">
                     <input type="text" class="input" id="nome" placeholder="Insira um nome" aria-label="Insira um nome">
                     <button type="submit" class="botao" id="btnAddNome">Adicionar</button>
@@ -52,7 +56,7 @@
                 UFPI - CCN<br>
             </address>
         </footer>
-        <script>
+        <!-- <script>
             var nomeFornecido = document.querySelector('#nome')
             var btnClass = document.querySelector('#btnAddNome')
             var listaDeNomes = document.querySelector('#listaDeNomes')
@@ -72,7 +76,7 @@
             function removeNameFromTheList(e) {
                 e.parentElement.remove()
             }
-        </script>
+        </script> -->
 
     </div>
 </body>
