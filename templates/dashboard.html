@@ -37,8 +37,8 @@
                     </li>
                 </ul>
                 <form action="#" class="chamada__formulario">
-                    <input type="text" class="input" id="nome" placeholder="Insira um nome" aria-label="Insira um nome">
-                    <button type="submit" class="botao" id="btnAddNome">Adicionar</button>
+                    <input v-model="nome" type="text" class="input" id="nome" placeholder="Insira um nome" aria-label="Insira um nome">
+                    <button @click="salvar()" class="botao" id="btnAddNome">Adicionar</button>
                 </form>
                 <button @click="listar()" class="botao">Sortear</button>
             </section>

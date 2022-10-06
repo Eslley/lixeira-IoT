@@ -9,7 +9,8 @@ var v = new Vue({
     data: {
         pessoas: [],
         estado: "Fechado",
-        nivel: 0
+        nivel: 0,
+        nome: ""
     },
 
     mounted() {
@@ -22,7 +23,15 @@ var v = new Vue({
     methods:{
 
         salvar() {
-
+            http.post('pessoas/create/', { 'nome': this.nome }).then(response => {
+                if (response.status == 201) {
+                    alert("Adicionado com sucesso!")
+                } else {
+                    alert(response.data.message)
+                }
+            }).catch(err => {
+                console.log(err)
+            })
         },
 
         listar() {
