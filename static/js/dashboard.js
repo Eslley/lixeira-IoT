@@ -41,8 +41,64 @@ var v = new Vue({
                 this.pessoas = response.data
                 console.log(response)
             })
-            
-        }
+        },
+
+        sortear() {
+            if (this.pessoas.length <= 0) {
+                this.showAlert("warning", "Aviso", "Sem pessoas para sortear!")
+            } else {
+                const index = Math.floor(Math.random() * numeros. length)
+                console.log("Sorteado foi " + this.pessoas[index])
+            }
+        },
+
+        showAlert(type, title, message) {
+
+            switch(type) {
+              case "success":
+                Swal.fire({
+                  title: title,
+                  text: message,
+                  icon: 'success',
+                  iconColor: '#f5f5f5',
+                  timer: 4000,
+                  showConfirmButton: false,
+                  toast: true,
+                  position: 'top',
+                  color: '#f5f5f5',
+                  background: '#77b93f'
+                })
+                break
+              case "error":
+                Swal.fire({
+                  title: title,
+                  text: message,
+                  icon: 'error',
+                  iconColor: '#f5f5f5',
+                  timer: 4000,
+                  showConfirmButton: false,
+                  toast: true,
+                  position: 'top',
+                  color: '#f5f5f5',
+                  background: '#ff4f52'
+                })
+                break
+              case "warning":
+                Swal.fire({
+                  title: title,
+                  text: message,
+                  icon: 'warning',
+                  iconColor: '#f5f5f5',
+                  timer: 4000,
+                  showConfirmButton: false,
+                  toast: true,
+                  position: 'top',
+                  color: '#f5f5f5',
+                  background: '#ff4f52'
+                })
+                break
+            }
+          }
         
     }
 })
