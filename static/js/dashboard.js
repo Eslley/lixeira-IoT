@@ -5,14 +5,19 @@ const http = axios.create({
 var v = new Vue({
     el: '#content',
     delimiters: ['${', '}'],
-    data: {
-        pessoas: [],
-        estado: "Fechado",
-        nivel: 0
+
+    data() {
+        return {
+            pessoas: [],
+            estado: "Fechado",
+            nivel: 0
+        }
     },
+
     mounted() {
         this.listar()
     },
+    
     watch:{
     },
 
