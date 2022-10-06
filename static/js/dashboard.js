@@ -46,9 +46,15 @@ var v = new Vue({
             if (this.pessoas.length <= 0) {
                 this.showAlert("warning", "Aviso", "Sem pessoas para sortear!")
             } else {
-                const index = Math.random() * (this.pessoas.length)
+                const index = this.getRandomInt(0, this.pessoas.length)
                 this.showAlert("success", "Sorteio", "Sorteado foi " + this.pessoas[index].nome)
             }
+        },
+
+        getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min);
         },
 
         showAlert(type, title, message) {
