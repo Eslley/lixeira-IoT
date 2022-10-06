@@ -1,5 +1,5 @@
 const http = axios.create({
-    baseURL: 'https://lixeira-iot.herokuapp.com/api/'
+    baseURL: 'https://lixeira-iot.herokuapp.com/api/',
 })
 
 var v = new Vue({
