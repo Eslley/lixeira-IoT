@@ -6,7 +6,12 @@ var v = new Vue({
     el: '#content',
     delimiters: ['${', '}'],
     data: {
-        pessoas: []
+        pessoas: [],
+        estado: "Fechado",
+        nivel: 0
+    },
+    mounted() {
+        this.listar()
     },
     watch:{
     },

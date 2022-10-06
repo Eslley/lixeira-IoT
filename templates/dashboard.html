@@ -32,8 +32,8 @@
                 <p>Nível: {{ nivel }}</p>
                 <h2 class="titulo">Pessoas cadastradas</h2>
                 <ul id="listaDeNomes">
-                    <li v-for="p in pessoas">
-                        {{ p.nome }}
+                    <li v-for="pessoa in pessoas" :key="pessoa.id">
+                        {{ pessoa.nome }}
                     </li>
                 </ul>
                 <form action="#" class="chamada__formulario">
