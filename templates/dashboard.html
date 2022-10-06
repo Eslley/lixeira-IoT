@@ -28,12 +28,12 @@
                     <span class="titulo--destaque">Dashboard</span>
                 </h2>
                 <h2 class="titulo">Informações</h2>
-                <p>Estado: {{ estado }}</p>
-                <p>Nível: {{ nivel }}</p>
+                <p>Estado: ${ estado }</p>
+                <p>Nível: ${ nivel }</p>
                 <h2 class="titulo">Pessoas cadastradas</h2>
                 <ul id="listaDeNomes">
                     <li v-for="pessoa in pessoas" :key="pessoa.id">
-                        {{ pessoa.nome }}
+                        ${ pessoa.nome }
                     </li>
                 </ul>
                 <form action="#" class="chamada__formulario">

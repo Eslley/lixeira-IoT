@@ -6,12 +6,10 @@ var v = new Vue({
     el: '#content',
     delimiters: ['${', '}'],
 
-    data() {
-        return {
-            pessoas: [],
-            estado: "Fechado",
-            nivel: 0
-        }
+    data: {
+        pessoas: [],
+        estado: "Fechado",
+        nivel: 0
     },
 
     mounted() {
