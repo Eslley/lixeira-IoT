@@ -1,9 +1,9 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from lixeiraAPI.models import PessoasModel
+from lixeiraAPI.models import LixeirasModel, PessoasModel
 
-from lixeiraAPI.serializers import PessoasSerializer
+from lixeiraAPI.serializers import LixeirasSerializer, PessoasSerializer
 
 @api_view(['GET'])
 def pessoasList(request):
@@ -42,3 +42,40 @@ def pessoaDelete(request, pk):
         return Response({'message': 'Pessoa deletada com sucesso'}, status=status.HTTP_200_OK)
     except PessoasModel.DoesNotExist:
         return Response({'message': 'Pessoa não encontrada'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def lixeirasList(request):
+    lixeiras = LixeirasModel.objects.all()
+    serializer = LixeirasSerializer(lixeiras, many=True)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['PUT'])
+def lixeiraUpdate(request):
+    try:
+        
+        serializer = LixeirasSerializer(data=request.data)
+
+        if serializer.is_valid():
+            lixeira = LixeirasModel.objects.filter(id=serializer.data['id'])
+
+            if lixeira.count():
+                lixeira = lixeira.get(id=serializer.data['id'])
+                lixeira.estaAberta = serializer.data['estaAberta']
+
+                lixeira.nivel = serializer.data['nivel']
+
+                lixeira.save(update_fields=['estaAberta', 'nivel'])
+
+                return Response({'message': 'Dados da lixeira foram atualizados com sucesso'}, status=status.HTTP_200_OK)
+            else:
+                lixeira = LixeirasModel(estaAberta=serializer.data['estaAberta'], nivel=serializer.data['nivel'])
+
+                lixeira.save()
+
+                return Response({'message': 'Lixeira adicionada com sucesso', 'id': lixeira.id}, status=status.HTTP_200_OK)
+
+        return Response({'message': 'Erro ao atualizar', 'errors': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        
+    except Exception as e:
+        return Response({'message': 'Erro interno', 'error': e}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
