@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Lixeira IoT</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componentes/cabecalho.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chamada.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componentes/input.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componentes/botoes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componentes/rodape.css' %}">
+
+    <script src="https://kit.fontawesome.com/4169326a4c.js" crossorigin="anonymous"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div id="content">
+        <header class="container cabecalho">
+            <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="cabecalho__logo">
+            <a href="/" aria-label="Dashboard">
+                <p class="cabecalho__nav">Home</p>
+            </a>
+        </header>
+        <main>
+            <section class="container">
+                <h2 class="titulo">
+                    <span class="titulo--destaque">Lixeiras Cadastradas</span>
+                </h2>
+                <div class="col mb-3 mt-5">
+                    <div v-for="lixeira in lixeiras" :key="lixeira.id" class="card h-100 my-3">
+                        <div class="card-body p-4 text-center">
+                            <i class="fa-solid fa-trash"></i>
+                            <div>
+                                <h5 class="titulo">Informações</h2>
+                                <p>Nivel: ${ lixeira.nivel }% Ocupada</p>
+                            </div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        </div>
+                    </div>
+                </div>
+                <!--input v-model="nome" type="text" class="p-3 form-control" id="nome" placeholder="Insira um nome" aria-label="Insira um nome">
+                <button @click="salvar()" class="btn btn-primary btn-lg botao" id="btnAddNome">Adicionar</button>
+                <button @click="sortear()" class="btn btn-primary btn-lg botao">Sortear</button-->
+                </div>
+            </section>
+        </main>
+        <footer class="container rodape">
+            <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="rodape__logo">
+            <ul class="rodape__social">
+                <li><a href="#" class="rodape__social-midia" title="Facebook"><img src="{% static 'img/icones/facebook.svg' %}" alt="Ícone do Facebook"></a></li>
+                <li><a href="#" class="rodape__social-midia" title="Twitter"><img src="{% static 'img/icones/twitter.svg' %}" alt="Ícone do Twitter"></a></li>
+                <li><a href="#" class="rodape__social-midia" title="Instagram"><img src="{% static 'img/icones/instagram.svg' %}" alt="Ícone do Instagram"></a></li>
+            </ul>
+            <address class="rodape__unidade texto">
+                <span class="rodape__unidade-titulo">Grupo 3</span>
+                Ciência da Computação<br>
+                UFPI - CCN<br>
+            </address>
+        </footer>
+        <!-- <script>
+            var nomeFornecido = document.querySelector('#nome')
+            var btnClass = document.querySelector('#btnAddNome')
+            var listaDeNomes = document.querySelector('#listaDeNomes')
+            btnClass.addEventListener('click', () => {
+                var nomeAtual = nomeFornecido.value
+                if (nomeAtual.length != 0) {
+                    var createAnHTMLList = `<li class="nomeNaLista">${nomeAtual}<button
+                    onclick="removeNameFromTheList(this)" class="btnRemover">Remover</button>`
+                    listaDeNomes.innerHTML += createAnHTMLList
+                    nomeFornecido.value = ''
+                    nomeFornecido.classList.remove('red')
+                } else
+                {
+                    nomeFornecido.classList.add('red')
+                }
+            })
+            function removeNameFromTheList(e) {
+                e.parentElement.remove()
+            }
+        </script> -->
+
+    </div>
+</body>
+
+    <script src="{% static 'plugins/vue.min.js' %}"></script>
+    <script src="{% static 'js/lixeiras.js' %}" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0/axios.min.js"></script>
+</html>

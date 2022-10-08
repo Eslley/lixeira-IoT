@@ -5,3 +5,6 @@ def index(request):
 
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+def lixeiras(request):
+    return render(request,'lixeiras.html')
