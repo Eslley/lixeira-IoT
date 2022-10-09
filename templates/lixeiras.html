@@ -31,15 +31,22 @@
         <main>
             <section class="container">
                 <h2 class="titulo">
-                    <span class="titulo--destaque">Lixeiras Cadastradas</span>
+                    <span class="titulo--destaque">
+                        Lixeiras Cadastradas
+                    </span>
                 </h2>
                 <div class="col mb-3 mt-5">
-                    <div v-for="lixeira in lixeiras" :key="lixeira.id" class="card h-100 my-3">
+                    <div v-for="lixeira in lixeiras" :key="lixeira.id" class="card h-100 my-3 overlay point">
                         <div class="card-body p-4 text-center">
-                            <i class="fa-solid fa-trash"></i>
-                            <div>
+                            <div class="m-2">
+                                <i v-show="lixeira['nivel']>=treshold" class="fa-solid fa-trash f-xxl red"></i>
+                                <i v-show="lixeira['nivel']<treshold" class="fa-solid fa-trash f-xxl green"></i>
+                            </div>
+                            <div class="text-left border border-dark p-2">
                                 <h5 class="titulo">Informações</h2>
                                 <p>Nivel: ${ lixeira.nivel }% Ocupada</p>
+                                <p v-show="lixeira['estaAberta']==false">Estado: Fechado</p>
+                                <p v-show="lixeira['estaAberta']==true">Estado: Aberto</p>
                             </div>
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">

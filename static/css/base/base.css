@@ -41,3 +41,35 @@ body {
 .texto {
     line-height: 26px;
 }
+
+.f-xxl {
+    font-size: xx-large;
+}
+
+.red {
+    color: var(--vermelho);
+}
+
+.green{
+    color: var(--verde);
+}
+
+.text-left{
+    text-align: left !important;
+}
+
+.overlay:hover {
+    height: 100%;
+    width: 100%;
+    opacity: 0.9;
+    transition: .5s ease;
+    background-color: #e8e8e8;
+  }
+
+.point {
+cursor: pointer !important;
+}
+
+.overlay:active{
+    border: 15px;
+}

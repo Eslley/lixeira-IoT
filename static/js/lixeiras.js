@@ -8,6 +8,7 @@ var v = new Vue({
 
     data: {
         lixeiras: [],
+        treshold: 30,
     },
 
     mounted() {
@@ -21,7 +22,7 @@ var v = new Vue({
 
         listar() {
             http.get('lixeiras/').then(response => {
-                this.lixeiras = response.data
+                this.lixeiras = response.data;
             })
         },
 
