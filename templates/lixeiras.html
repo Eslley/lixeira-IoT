@@ -35,8 +35,8 @@
                         Lixeiras Cadastradas
                     </span>
                 </h2>
-                <div class="col mb-3 mt-5">
-                    <div v-for="lixeira in lixeiras" :key="lixeira.id" class="card h-100 my-3 overlay point">
+                <div class="mx-0 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 row-cols-xlg-6 p-2 my-1 d-flex flex-row justify-content-center">
+                    <div v-for="lixeira in lixeiras" :key="lixeira.id" class="col card h-100 my-3 mx-2 overlay point">
                         <div class="card-body p-4 text-center">
                             <div class="m-2">
                                 <i v-show="lixeira['nivel']>=threshold" class="fa-solid fa-trash f-xxl red"></i>

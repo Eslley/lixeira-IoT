@@ -43,11 +43,11 @@ body {
 }
 
 .f-xxl {
-    font-size: xx-large;
+    font-size: xx-large !important;
 }
 
 .lg {
-    font-size:large;
+    font-size:large !important;
 }
 
 .red {
@@ -63,11 +63,10 @@ body {
 }
 
 .overlay:hover {
-    height: 100%;
-    width: 100%;
+    border-style: solid;
+    border-color: black;
     opacity: 0.9;
     transition: .5s ease;
-    background-color: #e8e8e8;
   }
 
 .point {

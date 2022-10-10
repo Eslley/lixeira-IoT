@@ -51,8 +51,11 @@ def lixeirasList(request):
     query = dict()
     for k,v in request.query_params.items():
         condition = re.search(params_regex,k)
-        condition = condition.groups(0)[0]
-        query[re.sub(params_regex,'',k)+symbols_dict[condition]] = request.query_params.get(k)
+        if condition:
+            condition = condition.groups(0)[0]
+            query[re.sub(params_regex,'',k)+symbols_dict[condition]] = request.query_params.get(k)
+        else:
+            query[k]=request.query_params.get(k)
     lixeiras = LixeirasModel.objects.filter(**query)
     serializer = LixeirasSerializer(lixeiras, many=True)
 
