@@ -1,3 +1,5 @@
+const threshold = 30;
+
 const http = axios.create({
     baseURL: 'https://lixeira-iot.herokuapp.com/api/',
 })
@@ -7,14 +9,15 @@ var v = new Vue({
     delimiters: ['${', '}'],
 
     data: {
+        lixeiras: [],
         pessoas: [],
-        estado: "Fechado",
-        nivel: 0,
         nome: ""
     },
 
     mounted() {
+        this.listarlixeiras()
         this.listar()
+        
     },
     
     watch:{
@@ -36,18 +39,25 @@ var v = new Vue({
             })
         },
 
+        listarlixeiras(){
+            http.get('lixeiras?nivel[>e]='+threshold).then(response => {
+                this.lixeiras = response.data;
+            })
+        },
+
         listar() {
             http.get('pessoas/').then(response => {
                 this.pessoas = response.data
             })
         },
-
         sortear() {
             if (this.pessoas.length <= 0) {
                 this.showAlert("warning", "Aviso", "Sem pessoas para sortear!")
             } else {
                 const index = this.getRandomInt(0, this.pessoas.length)
-                this.showAlert("success", "Sorteio", "Sorteado foi " + this.pessoas[index].nome)
+                const indexl = this.getRandomInt(0, this.lixeiras.length);
+                this.showAlert("success", "Sorteio", "Sorteado foi " + this.pessoas[index].nome + 
+                " para a lixeira "+this.lixeiras[indexl].id)
             }
         },
 

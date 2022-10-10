@@ -2,8 +2,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from lixeiraAPI.models import LixeirasModel, PessoasModel
-
+import re
 from lixeiraAPI.serializers import LixeirasSerializer, PessoasSerializer
+symbols_dict = {'>':'__gt','>e':'__gte','<':'__lt','<e':'__lte'}
+params_regex = re.compile(r'\[(.*)\]')
+
 
 @api_view(['GET'])
 def pessoasList(request):
@@ -45,7 +48,12 @@ def pessoaDelete(request, pk):
 
 @api_view(['GET'])
 def lixeirasList(request):
-    lixeiras = LixeirasModel.objects.all()
+    query = dict()
+    for k,v in request.query_params.items():
+        condition = re.search(params_regex,k)
+        condition = condition.groups(0)[0]
+        query[re.sub(params_regex,'',k)+symbols_dict[condition]] = request.query_params.get(k)
+    lixeiras = LixeirasModel.objects.filter(**query)
     serializer = LixeirasSerializer(lixeiras, many=True)
 
     return Response(serializer.data, status=status.HTTP_200_OK)

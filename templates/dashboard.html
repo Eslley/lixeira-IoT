@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{% static 'css/componentes/input.css' %}">
     <link rel="stylesheet" href="{% static 'css/componentes/botoes.css' %}">
     <link rel="stylesheet" href="{% static 'css/componentes/rodape.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componentes/cards.css' %}">
 
     <script src="https://kit.fontawesome.com/4169326a4c.js" crossorigin="anonymous"></script>
 
@@ -33,10 +34,14 @@
                 <h2 class="titulo">
                     <span class="titulo--destaque">Dashboard</span>
                 </h2>
-                <div class="border border-dark p-2 my-1">
-                <h2 class="titulo">Informações</h2>
-                <p>Estado: ${ estado } <i class="fa-solid fa-trash"></i></p>
-                <p>Nível: ${ nivel }% <i class="fa-solid fa-circle"></i></p>
+                <div class="mx-0 row gx-4 gx-lg-5 border border-dark p-2 my-1 d-flex flex-row">
+                    <div v-for="lixeira in lixeiras" :key="lixeira.id" class="flex-column m-2 bg-white box-trash d-flex text-center justify-content-center align-items-center">
+                        <div class="d-flex flex-row">
+                            <i class="m-1 fa-solid fa-trash lg red"></i>
+                            <p class="m-1">${ lixeira.nivel }% </p>
+                        </div>
+                        <p class="m-1">Lixeira: ${ lixeira.id }</p>
+                    </div>
                 </div>
                 <div class="border border-dark p-2 my-1">
                 <h2 class="titulo">Pessoas cadastradas: <i class="fa-sharp fa-solid fa-person"></i></h2>
@@ -48,8 +53,8 @@
                 </div>
                 <div class="d-grid gap-2 d-md-block p-2">
                 <input v-model="nome" type="text" class="p-3 form-control" id="nome" placeholder="Insira um nome" aria-label="Insira um nome">
-                <button @click="salvar()" class="btn btn-primary btn-lg botao" id="btnAddNome">Adicionar</button>
-                <button @click="sortear()" class="btn btn-primary btn-lg botao">Sortear</button>
+                <button @click="salvar()" class="btn btn-primary btn-lg botao my-1" id="btnAddNome">Adicionar</button>
+                <button @click="sortear()" class="btn btn-primary btn-lg botao my-1">Sortear</button>
                 </div>
             </section>
         </main>

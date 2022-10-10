@@ -2,13 +2,15 @@ const http = axios.create({
     baseURL: 'https://lixeira-iot.herokuapp.com/api/',
 })
 
+const threshold = 30;
+
 var v = new Vue({
     el: '#content',
     delimiters: ['${', '}'],
 
     data: {
         lixeiras: [],
-        treshold: 30,
+        threshold: threshold,
     },
 
     mounted() {

@@ -1,0 +1,13 @@
+.box-trash{
+    width: 24vw;
+    height: 10vh;
+    border-radius: 15px;
+    box-shadow: 6px 5px 19px 0px #00000030;
+}
+
+@media(min-width:992px){
+    .box-trash{
+        width: 12vw;
+        height: 8vh;
+    }
+}

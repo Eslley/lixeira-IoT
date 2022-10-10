@@ -39,8 +39,8 @@
                     <div v-for="lixeira in lixeiras" :key="lixeira.id" class="card h-100 my-3 overlay point">
                         <div class="card-body p-4 text-center">
                             <div class="m-2">
-                                <i v-show="lixeira['nivel']>=treshold" class="fa-solid fa-trash f-xxl red"></i>
-                                <i v-show="lixeira['nivel']<treshold" class="fa-solid fa-trash f-xxl green"></i>
+                                <i v-show="lixeira['nivel']>=threshold" class="fa-solid fa-trash f-xxl red"></i>
+                                <i v-show="lixeira['nivel']<threshold" class="fa-solid fa-trash f-xxl green"></i>
                             </div>
                             <div class="text-left border border-dark p-2">
                                 <h5 class="titulo">Informações</h2>

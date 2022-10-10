@@ -46,6 +46,10 @@ body {
     font-size: xx-large;
 }
 
+.lg {
+    font-size:large;
+}
+
 .red {
     color: var(--vermelho);
 }
