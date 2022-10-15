@@ -76,3 +76,7 @@ cursor: pointer !important;
 .overlay:active{
     border: 15px;
 }
+
+.form {
+    margin-top: 2rem;
+}

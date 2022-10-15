@@ -14,13 +14,27 @@
     margin-bottom: 1.55rem;
 }
 
+@media screen and (min-width: 600px) {
+    .chamada__texto {
+        width: 80%;
+    }
+}
+
 .chamada__imagem {
-    position: absolute;
     top: 10.25rem;
     right: 0;
     max-height: 150px;
     max-width: 150px;
     object-fit: contain;
+    visibility: hidden;
+    display: none;
+}
+
+@media screen and (min-width: 600px) {
+    .chamada__imagem {
+        display: block;
+        visibility: visible;
+    }
 }
 
 .chamada__formulario {

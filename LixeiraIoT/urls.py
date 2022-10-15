@@ -18,8 +18,8 @@ from django.urls import path, include
 from LixeiraIoT.views import *
 
 urlpatterns = [
-    path('', index),
-    path('dashboard/', dashboard),
+    path('', dashboard),
+    #path('dashboard/', dashboard),
     path('api/', include('lixeiraAPI.urls')),
     path('admin/', admin.site.urls),
     path('lixeiras/',lixeiras)

@@ -25,8 +25,8 @@
     <div id="content">
         <header class="container cabecalho">
             <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="cabecalho__logo">
-            <a href="/" aria-label="Dashboard">
-                <p class="cabecalho__nav">Home</p>
+            <a href="/lixeiras" aria-label="Dashboard">
+                <p class="cabecalho__nav">Lixeiras</p>
             </a>
         </header>
         <main>
@@ -51,48 +51,29 @@
                     </li>
                 </ul>
                 </div>
-                <div class="d-grid gap-2 d-md-block p-2">
-                <input v-model="nome" type="text" class="p-3 form-control" id="nome" placeholder="Insira um nome" aria-label="Insira um nome">
-                <button @click="salvar()" class="btn btn-primary btn-lg botao my-1" id="btnAddNome">Adicionar</button>
-                <button @click="sortear()" class="btn btn-primary btn-lg botao my-1">Sortear</button>
+                <div class="d-grid gap-2 d-md-block p-2 form">
+                    <input v-model="nome" type="text" class="p-3 form-control" id="nome" placeholder="Insira um nome" aria-label="Insira um nome">
+                    <button @click="salvar()" class="btn btn-primary btn-lg botao my-1" id="btnAddNome">Adicionar</button>
+                    <button @click="sortear()" class="btn btn-primary btn-lg botao my-1">Sortear</button>
                 </div>
             </section>
         </main>
-        <footer class="container rodape">
+        <footer class="rodape">
+            <div>
             <img src="{% static 'img/logo.svg' %}" alt="Logo da Lixeira IoT" class="rodape__logo">
-            <ul class="rodape__social">
-                <li><a href="#" class="rodape__social-midia" title="Facebook"><img src="{% static 'img/icones/facebook.svg' %}" alt="Ícone do Facebook"></a></li>
-                <li><a href="#" class="rodape__social-midia" title="Twitter"><img src="{% static 'img/icones/twitter.svg' %}" alt="Ícone do Twitter"></a></li>
-                <li><a href="#" class="rodape__social-midia" title="Instagram"><img src="{% static 'img/icones/instagram.svg' %}" alt="Ícone do Instagram"></a></li>
-            </ul>
+                <ul class="rodape__social">
+                    <li><a href="#" class="rodape__social-midia" title="Facebook"><img src="{% static 'img/icones/facebook.svg' %}" alt="Ícone do Facebook"></a></li>
+                    <li><a href="#" class="rodape__social-midia" title="Twitter"><img src="{% static 'img/icones/twitter.svg' %}" alt="Ícone do Twitter"></a></li>
+                    <li><a href="#" class="rodape__social-midia" title="Instagram"><img src="{% static 'img/icones/instagram.svg' %}" alt="Ícone do Instagram"></a></li>
+                </ul>
+            </div>
             <address class="rodape__unidade texto">
                 <span class="rodape__unidade-titulo">Grupo 3</span>
                 Ciência da Computação<br>
                 UFPI - CCN<br>
             </address>
+            <img src="{% static 'img/lixeira.png' %}" alt="Foto do produto" class="chamada__imagem">
         </footer>
-        <!-- <script>
-            var nomeFornecido = document.querySelector('#nome')
-            var btnClass = document.querySelector('#btnAddNome')
-            var listaDeNomes = document.querySelector('#listaDeNomes')
-            btnClass.addEventListener('click', () => {
-                var nomeAtual = nomeFornecido.value
-                if (nomeAtual.length != 0) {
-                    var createAnHTMLList = `<li class="nomeNaLista">${nomeAtual}<button
-                    onclick="removeNameFromTheList(this)" class="btnRemover">Remover</button>`
-                    listaDeNomes.innerHTML += createAnHTMLList
-                    nomeFornecido.value = ''
-                    nomeFornecido.classList.remove('red')
-                } else
-                {
-                    nomeFornecido.classList.add('red')
-                }
-            })
-            function removeNameFromTheList(e) {
-                e.parentElement.remove()
-            }
-        </script> -->
-
     </div>
 </body>
 
