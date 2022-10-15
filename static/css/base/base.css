@@ -6,7 +6,7 @@ body {
     font-size: var(--tamanho-corpo);
     color: var(--preto);
 
-    background: url('../../img/fundo-textura.png'), url('../../img/fundo-linhas.png');
+    background: url('../../img/fundo-textura.png');
     background-position: center;
 }
 
