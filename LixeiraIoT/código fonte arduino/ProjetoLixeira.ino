@@ -1,10 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
-#include <ESP8266WebServer.h>
-#include <ESP8266mDNS.h>
 #include <Servo.h>
-#include <NewPing.h>
 #include "Ultrasonic.h"
+#include <HTTPClient.h>
 
 #ifndef STASSID
 #define STASSID "jassonCell"
@@ -16,6 +14,7 @@
 #define ECHO D5
 #define FECHADO 45
 #define ABERTO 140
+#define ID_LIXEIRA_1 1
 
 const char *ssid = STASSID;
 const char *password = STAPSK;
@@ -24,8 +23,7 @@ const int pinTrigger = D6;
 const int pinEcho = D7;
 
 bool isOpen = false;
-
-ESP8266WebServer server(80);
+int nivel = 0;
 
 HC_SR04 sonar(pinTrigger,pinEcho);
 
@@ -34,58 +32,38 @@ HC_SR04 sensor1(TRIGGER,ECHO);
 Servo s; // Variável Servo
 int pos; // Posição Servo
 
-void handleRoot() {
-  char temp[600];
-  int distancia = sonar.distance();
+  // int distancia = sonar.distance();
   
-  int nivel = (distancia * 100) / 30; // considerando que a lixeira tem 30cm de altura
+  // int nivel = (distancia * 100) / 30; // considerando que a lixeira tem 30cm de altura
 
-  // char status[] = "fechada";
+void requestLixeiraUpdate(int id, bool isOpen, int nivel){
+  HTTPClient http;   
+  String url = "https://lixeira-iot.herokuapp.com/api/";
+  
+  DynamicJsonDocument data(2048);
+  data["id"] = id;
+  data["estaAberta"] = isOpen;
+  data["nivel"] = nivel;
 
-  // if (isOpen) {
-  //   status[] = "aberta";
-  // } else {
-  //   status[] = "fechada";
-  // }
+  String json;
+  serializeJson(data, json);
+  
+  http.begin(url); 
+  
+  int httpResponseCode = http.POST(json);   
+  
+  if(httpResponseCode > 0){ //Verifica codigo RESPONSE
 
+    String response = http.getString(); // Recebe o retorno da requisicao
 
-  snprintf(temp, 600,
-
-           "<html>\
-            <head>\
-              <title>Projeto Lixeira Inteligente</title>\
-              <meta charset='UTF-8'>\
-              <style>\
-                body { background-color: #cccccc; font-family: Arial, Helvetica, Sans-Serif; Color: #000088; }\
-              </style>\
-            </head>\
-            <body>\
-              <h1>Dashboard</h1>\
-              <p>Estado da Lixeira: %s</p>\
-              <p>Nível da Lixeira: %02d %%</p>\
-            </body>\
-          </html>",
-
-           isOpen ? "aberta" : "fechada", nivel
-          );
-  server.send(200, "text/html", temp);
-}
-
-void handleNotFound() {
-  String message = "File Not Found\n\n";
-  message += "URI: ";
-  message += server.uri();
-  message += "\nMethod: ";
-  message += (server.method() == HTTP_GET) ? "GET" : "POST";
-  message += "\nArguments: ";
-  message += server.args();
-  message += "\n";
-
-  for (uint8_t i = 0; i < server.args(); i++) {
-    message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
+    Serial.println("\n-------------------------------------------------------------");
+    Serial.println("HTTP Response Code:"+(String)httpResponseCode);
+    Serial.println("Response: "+response);     
+  }else{
+    Serial.print("Erro na requisicao: ");
+    Serial.println(httpResponseCode);
   }
-
-  server.send(404, "text/plain", message);
+  http.end(); 
 }
 
 void setup(void) {
@@ -108,18 +86,6 @@ void setup(void) {
   Serial.println(ssid);
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
-
-  if (MDNS.begin("esp8266")) {
-    Serial.println("MDNS responder started");
-  }
-
-  server.on("/", handleRoot);
-  server.on("/inline", []() {
-    server.send(200, "text/plain", "this works as well");
-  });
-  server.onNotFound(handleNotFound);
-  server.begin();
-  Serial.println("HTTP server started");
 }
 
 void loop(void) {
@@ -135,6 +101,9 @@ void loop(void) {
         s.write(pos);
         delay(15); //Velocidade de fechamento
       }
+
+      nivel = (sonar.distance() * 100) / 30; // considerando que a lixeira tem 30cm de altura
+      requestLixeiraUpdate(ID_LIXEIRA_1, isOpen, nivel);
     } 
     }else{
       isOpen = true;
@@ -143,10 +112,10 @@ void loop(void) {
           s.write(pos);
           delay(5); //Velocidade de abertura
         }
+
+        requestLixeiraUpdate(ID_LIXEIRA_1, isOpen, nivel);
       }
       delay(2000); //Tempo de permanencia aberto minimo depois de totalmente aberto
     } 
 
-  server.handleClient();
-  MDNS.update();
 }
