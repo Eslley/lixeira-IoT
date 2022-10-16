@@ -16,8 +16,12 @@ var v = new Vue({
 
     mounted() {
         this.listarlixeiras()
-        this.listar()
+
+        setInterval(() => {
+            this.listarlixeiras()
+        }, 5000)
         
+        this.listar()
     },
     
     watch:{

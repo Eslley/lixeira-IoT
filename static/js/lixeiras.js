@@ -14,7 +14,12 @@ var v = new Vue({
     },
 
     mounted() {
+      this.listar()
+
+      setInterval(() => {
         this.listar()
+      }, 5000)
+        
     },
     
     watch:{
