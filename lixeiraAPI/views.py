@@ -90,3 +90,14 @@ def lixeiraUpdate(request):
         
     except Exception as e:
         return Response({'message': 'Erro interno', 'error': e}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['DELETE'])
+def lixeiraDelete(request, pk):
+    try:
+        lixeira = LixeirasModel.objects.get(id=pk)
+        lixeira.delete()
+
+        return Response({'message': 'Lixeira deletada com sucesso'}, status=status.HTTP_200_OK)
+    except LixeirasModel.DoesNotExist:
+        return Response({'message': 'Lixeira não encontrada'}, status=status.HTTP_404_NOT_FOUND)

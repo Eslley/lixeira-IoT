@@ -7,5 +7,6 @@ urlpatterns = [
     path('pessoas/details/<str:pk>/', pessoaDetail, name='pessoas-detail'),
     path('pessoas/delete/<str:pk>/', pessoaDelete, name='pessoas-delete'),
     path('lixeiras/update/', lixeiraUpdate, name='lixeiras-update'),
+    path('lixeiras/delete/<str:pk>/', lixeiraDelete, name='lixeiras-delete'),
     path('lixeiras/', lixeirasList, name='lixeiras-list'),
 ]
