@@ -2,7 +2,7 @@
 #include <WiFiClient.h>
 #include <Servo.h>
 #include "Ultrasonic.h"
-#include <HTTPClient.h>
+#include <ESP8266HTTPClient.h>
 
 #ifndef STASSID
 #define STASSID "jassonCell"
@@ -14,7 +14,8 @@
 #define ECHO D5
 #define FECHADO 45
 #define ABERTO 140
-#define ID_LIXEIRA_1 1
+
+const int ID_LIXEIRA_1 = 1;
 
 const char *ssid = STASSID;
 const char *password = STAPSK;
@@ -32,38 +33,41 @@ HC_SR04 sensor1(TRIGGER,ECHO);
 Servo s; // Variável Servo
 int pos; // Posição Servo
 
-  // int distancia = sonar.distance();
-  
-  // int nivel = (distancia * 100) / 30; // considerando que a lixeira tem 30cm de altura
-
 void requestLixeiraUpdate(int id, bool isOpen, int nivel){
-  HTTPClient http;   
-  String url = "https://lixeira-iot.herokuapp.com/api/";
-  
-  DynamicJsonDocument data(2048);
-  data["id"] = id;
-  data["estaAberta"] = isOpen;
-  data["nivel"] = nivel;
+  if ((WiFi.status() == WL_CONNECTED)) {
 
-  String json;
-  serializeJson(data, json);
-  
-  http.begin(url); 
-  
-  int httpResponseCode = http.POST(json);   
-  
-  if(httpResponseCode > 0){ //Verifica codigo RESPONSE
+    HTTPClient http;   
+    String url = "https://lixeira-iot.herokuapp.com/api/lixeiras/update/";
 
-    String response = http.getString(); // Recebe o retorno da requisicao
+    String open = isOpen ? "true" : "false";
 
-    Serial.println("\n-------------------------------------------------------------");
-    Serial.println("HTTP Response Code:"+(String)httpResponseCode);
-    Serial.println("Response: "+response);     
-  }else{
-    Serial.print("Erro na requisicao: ");
-    Serial.println(httpResponseCode);
+    String json = "{\"id\": " + String(ID_LIXEIRA_1)  + ", \"estaAberta\": " + open + ", \"nivel\": " + String(nivel) + "}";
+
+    Serial.println(json);
+    
+    http.begin(url, "B5 86 32 41 D3 FB 3D 2B 56 26 0E A3 51 14 75 E8 DC FD 4A 9B"); 
+    http.addHeader("Content-Type", "application/json");
+    http.setTimeout(10000);
+
+    int httpCode = http.PUT(json);
+
+      // httpCode will be negative on error
+      if (httpCode > 0) {
+        // HTTP header has been send and Server response header has been handled
+        Serial.printf("[HTTP] POST... code: %d\n", httpCode);
+
+        // file found at server
+        if (httpCode == HTTP_CODE_OK) {
+          const String& payload = http.getString();
+          Serial.println("received payload:\n<<");
+          Serial.println(payload);
+          Serial.println(">>");
+        }
+      } else {
+        Serial.printf("[HTTP] POST... failed, error: %s\n", http.errorToString(httpCode).c_str());
+      }
+    http.end(); 
   }
-  http.end(); 
 }
 
 void setup(void) {
@@ -103,6 +107,7 @@ void loop(void) {
       }
 
       nivel = (sonar.distance() * 100) / 30; // considerando que a lixeira tem 30cm de altura
+      
       requestLixeiraUpdate(ID_LIXEIRA_1, isOpen, nivel);
     } 
     }else{
